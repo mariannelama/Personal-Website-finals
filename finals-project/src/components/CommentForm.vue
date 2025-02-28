@@ -10,7 +10,10 @@
         <label for="comment">Comment:</label>
         <textarea id="comment" v-model="comment" required class="form-control"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      
+      <!-- Debugging: Add Console Log -->
+      <button type="submit" class="btn btn-primary" @click="testClick">Submit</button>
+
       <div v-if="submissionStatus" class="mt-2">
         {{ submissionStatus }}
       </div>
@@ -20,21 +23,26 @@
 
 <script setup>
 import { ref } from 'vue';
-import { supabase } from '../lib/supabaseClient'
-
+import { supabase } from '../lib/supabaseClient';
 
 const name = ref('');
 const comment = ref('');
-const submissionStatus = ref(null);
+const submissionStatus = ref('');
 
-// Your Supabase URL and Key - IMPORTANT!
-const tableName = 'comments'; // Name of your Supabase table
+function testClick() {
+  console.log("Submit button clicked!");  // ✅ Check if this appears in the console
+}
 
 async function submitComment() {
+  if (!name.value.trim() || !comment.value.trim()) {
+    submissionStatus.value = "Please fill in both fields.";
+    return;
+  }
+
   submissionStatus.value = "Submitting...";
   try {
     const { error } = await supabase
-      .from(tableName)
+      .from('comments')
       .insert([{ name: name.value, comment: comment.value }]);
 
     if (error) {
@@ -46,36 +54,8 @@ async function submitComment() {
       comment.value = '';
     }
   } catch (err) {
-    console.error("An unexpected error occurred:", err);
-    submissionStatus.value = "An unexpected error occurred. Please try again later.";
+    console.error("Unexpected error:", err);
+    submissionStatus.value = "Unexpected error. Please try again.";
   }
 }
 </script>
-
-<style scoped>
-/* Basic styling - Customize as needed */
-.form-group {
-  margin-bottom: 1rem;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.form-control {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-</style>
