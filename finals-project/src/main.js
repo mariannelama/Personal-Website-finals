@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './css/style.css';
+import './css/style.css'
 import CommentForm from './components/CommentForm.vue'
 import Comment from './components/Comment.vue'
 

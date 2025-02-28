@@ -25,7 +25,6 @@ html {
 }
 
 body {
-    background-color: lightblue !important;
     background: var(--bg-color);
     color: var(--text-color);
 }
