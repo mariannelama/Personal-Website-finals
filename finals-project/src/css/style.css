@@ -72,3 +72,17 @@ body {
     color: var(--white-color);
     cursor: pointer;
 }
+
+section {
+    min-height: 100vh;
+    padding: 10rem 7% 2 rem;
+}
+
+.home {
+    display: flex;
+    align-items: center;
+}
+
+.home .home-content {
+    max-width: 44rem;
+}
