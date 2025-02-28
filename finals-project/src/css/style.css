@@ -75,14 +75,15 @@ body {
 
 section {
     min-height: 100vh;
-    padding: 10rem 7% 2 rem;
+    padding: 10rem 7% 2rem;
 }
 
 .home {
-    display: flex;
-    align-items: center;
+    display: flex;     /* Center horizontally */
+    text-align: center;
 }
 
 .home .home-content {
-    max-width: 44rem;
+    max-width: 60rem; /* Adjust as needed */
+    margin: 0 auto; /* Center horizontally */
 }
