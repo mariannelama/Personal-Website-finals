@@ -7,10 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> My Personal Web Page | Finals </title>
   
-  <!-- custome css-->
-  <link rel="stylesheet" href="/src/css/style.css">
-</head>
+  <!-- box icons -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+  
+<!-- custome css-->
+<link rel="stylesheet" href="/src/css/style.css">
 
+</head>
 <body>
 
   <!-- header design -->
@@ -24,10 +27,54 @@
       <a href="#Life Goals">Life Goals</a>
       <a href="#Visual Highlights">Visual Highlights</a>
     </nav>
+
+    <div class="bx bx-star" id="darkMode-icon"></div>
   </header>
+
+  <!-- home section design -->
+   <section class="home" id="home">
+    <div class="home-content">
+      <h3> ¡Vaya, hombre/mujer! </h3>
+      <h1> Marianne Ellise P. Lama </h1>
+      <p> I’m a coder by day, an explorer by heart. As a computer science student, I thrive in the ever-expanding universe of technology, where creativity meets logic. From designing digital solutions to hiking under the stars, I embrace a life that fuses innovation with adventure. Because in both code and life, the best discoveries happen when you dare to explore! </p>
+      
+
+      <div class="social-media">
+        <a href="#"><i class='bx bxl-facebook-circle' ></i>"</a>
+        <a href="#"><i class='bx bxl-instagram-alt' ></i></a>
+        <a href="#"><i class='bx bxl-linkedin-square' ></i></a>
+        <a href="#"><i class='bx bxl-github' ></i></a>
+      </div>
+
+      <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
+        <button v-on:click="toggleContent">Get to know me</button>
+        <div v-if="showForm" id="app">
+            <div>
+                <label for="name">Your Name:</label>
+                <input type="text" v-model="name" id="name" placeholder="Let me know who you are" />
+            </div>
+            <div>
+                <label for="comment">Your Comment:</label>
+                <textarea v-model="newComment" id="comment" placeholder="What you wanna know about me?..."></textarea>
+            </div>
+            <button @click="addComment">Submit</button>
+            <div v-if="comments.length > 0">
+                <h3>Comments:</h3>
+                <ul>
+                    <li v-for="(comment, index) in comments" :key="index">
+                        <strong>{{ comment.name }}</strong>: {{ comment.text }} ({{ comment.timestamp }})
+                    </li>
+                </ul>
+            </div>
+        </div>
+       </div>
+    </div>
+   </section>
   
   
   <!-- custom js -->
    <script src="js/script.js"></script>
 </body>
+
+
 </html>
