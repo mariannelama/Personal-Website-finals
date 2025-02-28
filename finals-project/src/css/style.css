@@ -79,11 +79,21 @@ section {
 }
 
 .home {
-    display: flex;     /* Center horizontally */
+    display: flex;
     text-align: center;
 }
 
 .home .home-content {
-    max-width: 60rem; /* Adjust as needed */
-    margin: 0 auto; /* Center horizontally */
+    max-width: 44rem;
+}
+
+.home-content h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: .3;
+}
+
+.home-content h1 {
+    font-size: 5.6rem;
+    font-weight: 700;
 }
