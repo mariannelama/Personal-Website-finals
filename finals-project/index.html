@@ -34,8 +34,8 @@
   <!-- home section design -->
    <section class="home" id="home">
     <div class="home-content">
-      <h3> ¡Vaya, hombre/mujer! </h3>
-      <h1> Marianne Ellise P. Lama </h1>
+      <h3> About Me </h3>
+      <h1>Marianne Ellise P. Lama</h1>
       <p> I’m a coder by day, an explorer by heart. As a computer science student, I thrive in the ever-expanding universe of technology, where creativity meets logic. From designing digital solutions to hiking under the stars, I embrace a life that fuses innovation with adventure. Because in both code and life, the best discoveries happen when you dare to explore! </p>
       
 
@@ -46,20 +46,27 @@
         <a href="#"><i class='bx bxl-github' ></i></a>
       </div>
 
-      <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
-        <button v-on:click="toggleContent">Get to know me</button>
-        <div v-if="showForm" id="app">
-            <div>
-                <label for="name">Your Name:</label>
-                <input type="text" v-model="name" id="name" placeholder="Let me know who you are" />
-            </div>
-            <div>
-                <label for="comment">Your Comment:</label>
-                <textarea v-model="newComment" id="comment" placeholder="What you wanna know about me?..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+      <!-- Comment Button with Form -->
+      <div id="app">
+        <button @click="toggleComments" class="btn">Get to know me</button>
+    
+        <div v-if="showComments">
+            <label>Your Name:</label>
+            <input type="text" v-model="name" placeholder="Enter your name">
+            
+            <label>Your Comment:</label>
+            <textarea v-model="comment" placeholder="Leave a comment..."></textarea>
+            
+            <button @click="submitComment" class="btn">Submit</button>
+    
+            <ul>
+                <li v-for="(c, index) in comments" :key="index">
+                    <strong>{{ c.name }}</strong>: {{ c.text }}
+                </li>
+            </ul>
         </div>
-       </div>
+    </div>    
+
     </div>
    </section>
   

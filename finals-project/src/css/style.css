@@ -80,20 +80,88 @@ section {
 
 .home {
     display: flex;
-    text-align: center;
+    align-items: center;
 }
 
 .home .home-content {
-    max-width: 44rem;
+    max-width: 70rem;
 }
 
-.home-content h1 {
-    font-size: 3.2rem;
+.home-content h3 {
+    font-size: 3rem;
     font-weight: 700;
     line-height: .3;
 }
 
 .home-content h1 {
-    font-size: 5.6rem;
-    font-weight: 700;
+    font-size: 4rem;
+    font-weight: 800;
+}
+
+.home-content p {
+    font-size: 1.5rem;
+}
+
+.home-content .social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: .2rem solid var(--main-color);  
+    border-radius: 50%;
+    box-shadow: 0 .2rem .5rem var(--shadow-color);
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 2.5rem 1.5rem 3rem 0;
+    transition: .5s ease;  
+}
+
+.home-content .social-media a:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 1.2rem 2.8rem;
+    background: var(--main-color);
+    border-radius: .6rem;
+    box-shadow: 0 .2rem;
+}
+
+#app input,
+#app textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#app ul {
+    list-style: none;
+    padding: 0;
+}
+
+#app li {
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#app {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    margin: 20px auto;
+}
+
+#app div {
+    transition: opacity 0.5s ease-in-out;
 }
