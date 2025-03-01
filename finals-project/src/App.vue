@@ -6,7 +6,7 @@
     </button>
 
     <!-- Comment Section (Hidden Until Clicked) -->
-    <div v-show="showComments" class="mt-4 transition-opacity duration-300 ease-in-out">
+    <div v-if="showComments" class="mt-4 transition-opacity duration-300 ease-in-out">
       <CommentForm @comment-submitted="addComment" />
       <Comment :comments="comments" />
     </div>
@@ -19,18 +19,26 @@ import CommentForm from './components/CommentForm.vue';
 
 export default {
   components: { Comment, CommentForm },
+
   data() {
     return {
-      showComments: false, // ✅ This ensures it's hidden by default
-      comments: [],
+      showComments: false,
+      comments: []
     };
   },
+
   methods: {
     toggleComments() {
       this.showComments = !this.showComments;
     },
     addComment(comment) {
       this.comments.push(comment);
+    }
+  },
+
+  watch: {
+    showComments(newValue) {
+      console.log("showComments changed to:", newValue);
     }
   }
 };

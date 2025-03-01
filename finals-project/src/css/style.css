@@ -28,7 +28,7 @@
 
 #app ul {
     list-style: none;
-    padding: 1;
+    padding: 0;
 }
 
 #app li {
@@ -38,8 +38,6 @@
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-
-
 
 .message {
     font-size: large;
@@ -57,37 +55,154 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+} 
+
 body {
     width: 100%;
     height: 100vh;
     overflow-y: auto;
-    scroll-behavior: smooth;
     background: url('https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/stars.jpg?raw=true') no-repeat center center fixed;
     background-size: cover;
 }
 
-.education-box { 
-    display: block; 
-    width: 100%;  
-    height: auto; 
-    background: url('https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/stars.jpg?raw=true') no-repeat center center; 
-    background-size: cover; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    padding: 20px; 
-    font-family: Arial, sans-serif; 
-    border: 1px solid #ccc; 
-    text-align: left; 
+section {
+    padding: 50px;
+    min-height: 100vh;
+    border-bottom: 1px solid #ddd;
 }
 
-#education-box ul { 
-    list-style: disc; 
+.education-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+    margin: 50px auto;
+}
+ 
+.education-box ul { 
+    list-style: none; 
     margin: 0; 
-    padding-left: 20px; 
-} 
+    padding-left: 20px;
+}
 
-#education-box li { 
-    margin: 10px 0; 
-} 
+.education-box li {
+    margin: 20px 0;
+    font-size: 1.5em;
+}
+
+.education-box h2 {
+    font-size: 3em;
+    margin-bottom: 30px;
+}
+
+
+.it-experience-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.it-experience-box h2 {
+    font-size: 3em;   
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.it-experience-box ul {
+    list-style: none;  
+    padding: 0;
+    margin: 0;
+}
+
+.it-experience-box li {
+    font-size: 1.5em;  
+    margin: 20px 0;   
+}
+
+.personal-pursuits-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.personal-pursuits-box ul {
+    list-style: none;  
+    padding: 0;
+    margin: 0;
+}
+
+.personal-pursuits-box li {
+    font-size: 1.5em;  
+    margin: 20px 0;   
+}
+
+.personal-pursuits-box h2 {
+    font-size: 3em;   
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.life-goals-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 1200px;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.life-goals-box ul {
+    list-style: none;  
+    padding: 0;
+    margin: 0;
+}
+
+.life-goals-box li {
+    font-size: 1.5em;  
+    margin: 20px 0;   
+}
+
+.life-goals-box h2 {
+    font-size: 3em;  
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.visual-highlights-box .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+    gap: 10px;
+    background: transparent;
+    padding: 10px;
+    justify-content: center;
+    max-width: 80vw; /* Makes sure grid doesn't stretch too wide */
+    margin: auto;
+}
+
+.grid-container img {
+    width: 300%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 10px; /* Optional: Adds rounded corners */
+}
+
 
 #close-box { 
     display: block; 
@@ -97,6 +212,8 @@ body {
     font-size: 14px; 
     text-align: right; 
 } 
+
+
 
 #close-box:hover { 
     text-decoration: underline; 
@@ -273,7 +390,7 @@ section {
 }
 
 .content .typewriter {
-    font-size: clamp(1rem, 1rem + 5vw, 2.5rem);
+    font-size: clamp(1rem, 1rem + 5vw, 2rem);
     font-weight: 500;
 }
 
