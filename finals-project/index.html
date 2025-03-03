@@ -125,7 +125,7 @@
         </div>
 
     <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
-        <button v-on:click="toggleContent">Get to know me</button>
+        <button v-on:click="toggleContent"> Get to know me </button>
         <div v-if="showForm" id="app">
             <div>
                 <input type="text" id="name" placeholder="Enter your name" />
@@ -135,12 +135,7 @@
             </div>
             <button @click="addComment">Submit</button>
             <div v-if="comments.length > 0" class="mt-6">
-                <h3 class="text-lg font-bold mb-2">Comments:</h3>
-                <ul class="space-y-2">
-                  <li v-for="comment in comments" :key="comment.id" class="p-2 border-b">
-                    <strong>{{ comment.name }}</strong>: {{ comment.text }} ({{ formatTimestamp(comment.created_at) }})
-                  </li>
-                </ul>
+                <div v-for="showForm" id="app"></div>
             </div>
         </div>
     </div>
@@ -152,6 +147,7 @@
     </script>
     <div id="app"></div>
     <script type="comments" src="/src/main.js"></script>
+    <script src="/dist/build.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
 </body>
