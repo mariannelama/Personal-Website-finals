@@ -48,3 +48,4 @@ const app = Vue.createApp({
 });
 
 app.mount("#appContainer");
+</script>
