@@ -103,7 +103,6 @@
 
     <section id="visual-highlights" class="visual-highlights-box">
         <div class="grid-container">
-            <h2> visual highlights </h2>
                 <div class="grid-container">
                     <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/main/Images/camping.jpg?raw=true" alt="camping 1">
                 </div>
@@ -126,34 +125,41 @@
         </div>
     </section>
 
-    <section>
+    <section id="fa-solid fa-bars hamburg" class="nav-container">
+        <div class="comment-box">
+            <h2> Comments </h2>
+            <div class="Comments">
 
-    <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
-                    <button v-on:click="toggleContent">Get to know me</button>
-                    <div v-if="showForm" id="app">
-                        <div>
-                            <label for="name">Your Name:</label>
-                            <input type="text" v-model="name" id="name" placeholder="Enter your name" />
-                        </div>
-                        <div>
-                            <label for="comment">Your Comment:</label>
-                            <textarea v-model="newComment" id="comment" placeholder="Leave a comment..."></textarea>
-                        </div>
-                        <button @click="addComment">Submit</button>
-                        <div v-if="comments.length > 0">
-                            <h3>Comments:</h3>
-                            <ul>
-                                <li v-for="(comment, index) in comments" :key="index">
-                                    <strong>{{ comment.name }}</strong>: {{ comment.text }} ({{ comment.timestamp }})
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
+
         </div>
     </section>
 
+    <section>
+<    <!-- Vue.js Application -->
+    <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
+        <button v-on:click="toggleContent">Get to know me</button>
+        <div v-if="showForm" id="app">
+            <div>
+                <label for="name">Your Name:</label>
+                <input type="text" v-model="name" id="name" placeholder="Enter your name" />
+            </div>
+            <div>
+                <label for="comment">Your Comment:</label>
+                <textarea v-model="newComment" id="comment" placeholder="Leave a comment..."></textarea>
+            </div>
+            <button @click="addComment">Submit</button>
+            <div v-if="comments.length > 0">
+                <h3>Comments:</h3>
+                <ul>
+                    <li v-for="(comment, index) in comments" :key="index">
+                        <strong>{{ comment.name }}</strong>: {{ comment.text }} ({{ comment.timestamp }})
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
     <script>
         function scrollToComments() {
@@ -161,7 +167,6 @@
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="src/main.js"></script>
 
 </body>
 </html>
