@@ -125,24 +125,32 @@
         </div>
     </section>
 
-    <section id="comment-form">
-        <h2>Leave a Comment</h2>
-        <form id="form">
-          <label for="name">Your Name:</label>
-          <input type="text" id="name" name="name" required>
-          <label for="comment">Your Comment:</label>
-          <textarea id="comment" name="comment" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      </section>
-      <section id="comments-display">
-        <h2>Comments:</h2>
-        <div id="comments">
-          <!-- Visitor comments will appear here -->
-        </div>
-    </section>
+    <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
+        <button @click="toggleContent">Get to know me</button>
     
-      <script>
+        <div v-if="showForm" id="app">
+          <div>
+            <label for="name">Your Name:</label>
+            <input type="text" v-model="name" id="name" placeholder="Enter your name" />
+          </div>
+          <div>
+            <label for="comment">Your Comment:</label>
+            <textarea v-model="newComment" id="comment" placeholder="Leave a comment..."></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" :disabled="!name || !newComment" @click="submitComment">Submit</button>
+    
+          <div v-if="comments.length > 0">
+            <h3>Comments:</h3>
+            <ul>
+              <li v-for="(comment, index) in comments" :key="index">
+                <strong>{{ comment.name }}</strong>: {{ comment.comment }} ({{ comment.timestamp }})
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    <script>
         function scrollToComments() {
         document.getElementById("appContainer").scrollIntoView({ behavior: "smooth" });
     }
