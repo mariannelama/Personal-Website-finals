@@ -40,14 +40,7 @@
     </form>
 
     <!-- Comments Display -->
-    <div v-if="comments.length > 0" class="mt-6">
-      <h3 class="text-lg font-bold mb-2">Comments:</h3>
-      <ul class="space-y-2">
-        <li v-for="comment in comments" :key="comment.id" class="p-2 border-b">
-          <strong>{{ comment.name }}</strong>: {{ comment.text }} ({{ formatTimestamp(comment.created_at) }})
-        </li>
-      </ul>
-    </div>
+    
   </div>
 </template>
 
