@@ -227,28 +227,6 @@
     object-fit: cover; 
     border-radius: 10px; /* Optional: Adds rounded corners */
   }
-
-  .hamburg-box {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 1px;
-    border-radius: 20px;
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 1000px;
-    text-align: center;
-    margin: 50px auto;
-  }
-  
-  .hamburg-box ul {
-    list-style: none;  
-    padding: 0;
-    margin: 0;
-  }
-
-  .hamburg-box li {
-    font-size: 1.5em;  
-    margin: 20px 0;   
-  }
   
   #close-box { 
     display: block; 

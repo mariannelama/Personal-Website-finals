@@ -116,6 +116,7 @@ function formatTimestamp(timestamp) {
 <style scoped>
 .comment-section {
   max-width: 500px;
+  font-size: medium;
   margin: auto;
   padding: 20px;
   border: 1px solid #ddd;
