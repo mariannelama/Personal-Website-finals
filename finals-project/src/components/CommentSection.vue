@@ -28,7 +28,7 @@
 <script>
 import { createClient } from "@supabase/supabase-js";
 
-// Replace these with your actual Supabase credentials
+// ✅ Replace with your actual Supabase project details
 const supabase = createClient(
   "https://ndiynsjjhrpcvokrkhdx.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kaXluc2pqaHJwY3Zva3JraGR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA3MTE5MjksImV4cCI6MjA1NjI4NzkyOX0.uBsCl7VxE8gz1f_monCym0oI7J98r5V76UqxbnDCfgg"
@@ -56,13 +56,13 @@ export default {
       if (error) {
         console.error("Error submitting comment:", error.message);
       } else {
-        this.comments.push(data[0]); // Add new comment to the list
+        this.comments.push(data[0]); // Show new comment
         this.name = "";
         this.message = "";
       }
     },
     async fetchComments() {
-      const { data, error } = await supabase.from("comments").select("*");
+      const { data, error } = await supabase.from("comments").select("*").order("created_at", { ascending: false });
 
       if (!error) {
         this.comments = data;
@@ -74,27 +74,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.input-field,
-.textarea {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.submit-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-}
-
-.submit-button:hover {
-  background-color: #0056b3;
-}
-</style>
