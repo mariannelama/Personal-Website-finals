@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './css/style.css' // Ensure your styles are applied
 import CommentSection from './components/CommentSection.vue'
+import { supabase } from '../lib/supabaseClient'
 
 // Create and mount the Vue app
 const app = createApp(App)
