@@ -19,12 +19,9 @@ onMounted(() => {
   <ul>
     <li v-for="components" :key="Comment.id">{{ Comment.name }}</li>
   </ul>
+
+  <comment-form/>
+  <comment/>
+   
+
 </template>
-
-<script>
-import Comment from './components/Comment.vue';
-import CommentForm from './components/CommentForm.vue';
-
-
-app.mount("#appContainer");
-</script>
