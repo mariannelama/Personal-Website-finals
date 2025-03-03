@@ -1,119 +1,100 @@
 <template>
   <div class="comment-section">
-    <h2 class="text-xl font-bold mb-2">Leave a Comment</h2>
+    <h2>Leave a Comment</h2>
+    <input
+      type="text"
+      v-model="name"
+      placeholder="Your Name"
+      class="input-field"
+    />
+    <textarea
+      v-model="message"
+      placeholder="Your Message"
+      class="textarea"
+    ></textarea>
+    <button @click="submitComment" class="submit-button">Submit</button>
 
-    <!-- Comment Form -->
-    <form @submit.prevent="submitComment" class="space-y-4">
-      <div>
-        <label for="name" class="block font-medium">Name:</label>
-        <input 
-          type="text" 
-          id="name" 
-          v-model="name" 
-          required 
-          class="w-full p-2 border rounded"
-          placeholder="Enter your name"
-        />
-      </div>
-
-      <div>
-        <label for="comment" class="block font-medium">Comment:</label>
-        <textarea 
-          id="comment" 
-          v-model="comment" 
-          required 
-          class="w-full p-2 border rounded"
-          placeholder="Leave a message..."
-        ></textarea>
-      </div>
-
-      <button 
-        type="submit" 
-        class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-      >
-        Submit
-      </button>
-
-      <div v-if="submissionStatus" class="text-sm mt-2 text-green-600">
-        {{ submissionStatus }}
-      </div>
-    </form>
-
-    <!-- Comments Display -->
-    
+    <div v-if="comments.length">
+      <h3>Comments</h3>
+      <ul>
+        <li v-for="comment in comments" :key="comment.id">
+          <strong>{{ comment.name }}</strong>: {{ comment.message }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue';
-import { supabase } from '../lib/supabaseClient';
+<script>
+import { createClient } from "@supabase/supabase-js";
 
-const name = ref('');
-const comment = ref('');
-const submissionStatus = ref(null);
-const comments = ref([]);  // Store comments here
-const tableName = 'comments';
+// Replace these with your actual Supabase credentials
+const supabase = createClient(
+  "https://ndiynsjjhrpcvokrkhdx.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kaXluc2pqaHJwY3Zva3JraGR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA3MTE5MjksImV4cCI6MjA1NjI4NzkyOX0.uBsCl7VxE8gz1f_monCym0oI7J98r5V76UqxbnDCfgg"
+);
 
-// Fetch comments on component mount
-onMounted(async () => {
-  await fetchComments();
-});
+export default {
+  data() {
+    return {
+      name: "",
+      message: "",
+      comments: [],
+    };
+  },
+  methods: {
+    async submitComment() {
+      if (!this.name || !this.message) {
+        alert("Please fill in all fields");
+        return;
+      }
 
-async function fetchComments() {
-  const { data, error } = await supabase
-    .from(tableName)
-    .select('*')
-    .order('created_at', { ascending: false });
+      const { data, error } = await supabase.from("comments").insert([
+        { name: this.name, message: this.message },
+      ]);
 
-  if (error) {
-    console.error("Error fetching comments:", error);
-  } else {
-    comments.value = data;
-  }
-}
+      if (error) {
+        console.error("Error submitting comment:", error.message);
+      } else {
+        this.comments.push(data[0]); // Add new comment to the list
+        this.name = "";
+        this.message = "";
+      }
+    },
+    async fetchComments() {
+      const { data, error } = await supabase.from("comments").select("*");
 
-async function submitComment() {
-  if (!name.value.trim() || !comment.value.trim()) {
-    submissionStatus.value = "Please enter both name and comment.";
-    return;
-  }
-
-  submissionStatus.value = "Submitting...";
-  try {
-    const { data, error } = await supabase
-      .from(tableName)
-      .insert([{ name: name.value, text: comment.value }])
-      .select();  // Get back the inserted row
-
-    if (error) {
-      console.error("Supabase error:", error);
-      submissionStatus.value = "Error submitting comment. Please try again.";
-    } else {
-      submissionStatus.value = "Comment submitted successfully!";
-      comments.value.unshift(data[0]); // Add new comment to the top
-      name.value = ''; 
-      comment.value = ''; 
-    }
-  } catch (err) {
-    console.error("Unexpected error:", err);
-    submissionStatus.value = "Unexpected error. Please try again.";
-  }
-}
-
-// Format timestamp for readability
-function formatTimestamp(timestamp) {
-  return new Date(timestamp).toLocaleString();
-}
+      if (!error) {
+        this.comments = data;
+      }
+    },
+  },
+  mounted() {
+    this.fetchComments();
+  },
+};
 </script>
 
 <style scoped>
-.comment-section {
-  max-width: 500px;
-  font-size: medium;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.input-field,
+.textarea {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
 }
 </style>
