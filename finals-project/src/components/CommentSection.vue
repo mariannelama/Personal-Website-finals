@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-section">
+    <div>
       <h2>Leave a Comment</h2>
       <form @submit.prevent="submitComment">
         <div class="form-group">
@@ -11,75 +11,80 @@
           <textarea id="comment" v-model="comment" required class="form-control"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-        <div v-if="submissionStatus" class="status-message">{{ submissionStatus }}</div>
+        <div v-if="submissionStatus" class="mt-2">
+          {{ submissionStatus }}
+        </div>
       </form>
-      
+  
       <h2>Comments</h2>
-      <ul v-if="comments.length > 0">
+      <ul>
         <li v-for="comment in comments" :key="comment.id">
-          <strong>{{ comment.name }}</strong>: {{ comment.comment }}
+          <strong>{{ comment.name }}</strong>: {{ comment.comment }} ({{ formatDate(comment.created_at) }})
         </li>
       </ul>
-      <p v-else>No comments yet. Be the first to comment!</p>
     </div>
   </template>
   
   <script setup>
-  import { ref, onMounted } from 'vue';
-  import { supabase } from '../lib/supabaseClient';
+  import { ref, onMounted } from 'vue'
+  import { supabase } from '../lib/supabaseClient'
   
-  const name = ref('');
-  const comment = ref('');
-  const submissionStatus = ref(null);
-  const comments = ref([]);
-  const tableName = 'comments';
+  const name = ref('')
+  const comment = ref('')
+  const comments = ref([])
+  const submissionStatus = ref(null)
   
   async function fetchComments() {
-    const { data, error } = await supabase.from(tableName).select();
-    if (!error) {
-      comments.value = data;
+    const { data, error } = await supabase.from('comments').select('*').order('created_at', { ascending: false })
+    if (error) {
+      console.error('Error fetching comments:', error)
+    } else {
+      comments.value = data
     }
   }
   
   async function submitComment() {
-    submissionStatus.value = "Submitting...";
-    const { error } = await supabase.from(tableName).insert([{ name: name.value, comment: comment.value }]);
-    
+    if (!name.value || !comment.value) return
+  
+    const { error } = await supabase.from('comments').insert([
+      { name: name.value, comment: comment.value }
+    ])
+  
     if (error) {
-      submissionStatus.value = "Error submitting comment. Please try again.";
+      submissionStatus.value = 'Error submitting comment.'
+      console.error('Error inserting comment:', error)
     } else {
-      submissionStatus.value = "Comment submitted successfully!";
-      name.value = '';
-      comment.value = '';
-      fetchComments(); // Refresh comments
+      submissionStatus.value = 'Comment submitted successfully!'
+      name.value = ''
+      comment.value = ''
+      fetchComments() // Refresh the list after submitting
     }
   }
   
-  onMounted(fetchComments);
+  function formatDate(timestamp) {
+    return new Date(timestamp).toLocaleString()
+  }
+  
+  onMounted(fetchComments)
   </script>
   
   <style scoped>
-  .comment-section {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
   .form-group {
     margin-bottom: 1rem;
   }
+  
   label {
     display: block;
     margin-bottom: 0.5rem;
   }
+  
   .form-control {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+  
   .btn {
     padding: 0.5rem 1rem;
     background-color: #007bff;
@@ -88,19 +93,5 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  .status-message {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    background: white;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-  }
   </style>
+  

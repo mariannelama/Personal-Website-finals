@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import CommentSection from './components/CommentSection.vue';
+import CommentSection from './components/CommentSection.vue'
 
 export default {
   components: {
     CommentSection
   }
-};
+}
 </script>
