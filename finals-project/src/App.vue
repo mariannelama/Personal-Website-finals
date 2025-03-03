@@ -1,8 +1,13 @@
 <template>
-  <comment-form/>
-  <comment/>
-   
-
+  <CommentSection />
 </template>
 
-<script></script>
+<script>
+import CommentSection from './components/CommentSection.vue';
+
+export default {
+  components: {
+    CommentSection
+  }
+};
+</script>
