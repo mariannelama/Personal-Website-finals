@@ -42,21 +42,18 @@ async function fetchComments() {
 }
 
 async function submitComment() {
-  if (!name.value || !comment.value) return;
+    if (!name || !newComment) return;
+    
+    const { data, error } = await supabase
+        .from('comments') // Your table name
+        .insert([{ name, comment: newComment, created_at: new Date() }]);
 
-  const { data, error } = await supabase.from("comments").insert([
-    { name: name.value, comment: comment.value },
-  ]);
-
-  if (error) {
-    submissionStatus.value = "Error submitting comment.";
-    console.error("Error inserting comment:", error);
-  } else {
-    submissionStatus.value = "Comment submitted successfully!";
-    name.value = "";
-    comment.value = "";
-    fetchComments(); // Refresh comments after submission
-  }
+    if (error) {
+        console.error('Error submitting comment:', error.message);
+    } else {
+        console.log('Comment added:', data);
+        comments.push({ name, comment: newComment, timestamp: new Date() });
+    }
 }
 
 function formatDate(timestamp) {
