@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/assets/style.css">
     <title> My Personal WebPage | Finals </title>
 </head>
 <body>
@@ -14,7 +14,7 @@
             <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
                 <span> Explore My Profile </span>
             </div>
-            
+
             <div class="links">
                 <a href="#home">Home</a>
                 <a href="#learning-success">Learning & Success</a>
@@ -22,7 +22,7 @@
                 <a href="#personal-pursuits">Personal Pursuits</a>
                 <a href="#life-goals">Life Goals</a>
                 <a href="#visual-highlights">Visual Highlights</a>
-                <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+                <i class="fa-solid fa-bars hamburg" onclick="scrollToComments()"></i>
             </div>
         </div>
     </nav>
@@ -104,33 +104,60 @@
     <section id="visual-highlights" class="visual-highlights-box">
         <div class="grid-container">
                 <div class="grid-container">
-                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/main/Images/camping.jpg?raw=true" alt="Campingb 1">
+                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/main/Images/camping.jpg?raw=true" alt="camping 1">
                 </div>
                 <div class="grid-container">
-                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/riyaya.jpg?raw=true" alt="Ocean 2">
+                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/bts.jpg?raw=true" alt="bts 2">
                 </div>
                 <div class="grid-container">
                     <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/sunset.jpg?raw=true" alt="Sunset 3">
                 </div>
                 <div class="grid-container">
-                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/bias.jpg?raw=true" alt="Bias 4">
+                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/camp.jpg?raw=true" alt="camp 4">
                 </div>
                 <div class="grid-container">
-                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/me.jpg?raw=true" alt="Nature 5">
+                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/zariyah.jpg?raw=true" alt="zariyah 5">
                 </div>
                 <div class="grid-container">
-                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/bestie.jpg?raw=true" alt="Bestie 6">
+                    <img src="https://github.com/Marianne-101/Webprog_Personal-Website/blob/feature/2_MPL_customize_my_website/Images/bestie.jpg?raw=true" alt="bestie 6">
                 </div>
             </div>
         </div>
     </section>
+
+    <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
+        <button @click="toggleContent">Get to know me</button>
     
+        <div v-if="showForm" id="app">
+          <div>
+            <label for="name">Your Name:</label>
+            <input type="text" v-model="name" id="name" placeholder="Enter your name" />
+          </div>
+          <div>
+            <label for="comment">Your Comment:</label>
+            <textarea v-model="newComment" id="comment" placeholder="Leave a comment..."></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" :disabled="!name || !newComment" @click="submitComment">Submit</button>
+    
+          <div v-if="comments.length > 0">
+            <h3>Comments:</h3>
+            <ul>
+              <li v-for="(comment, index) in comments" :key="index">
+                <strong>{{ comment.name }}</strong>: {{ comment.comment }} ({{ comment.timestamp }})
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
     <script>
-        function hamburg() {
-            alert("Hamburger menu clicked! Implement functionality here.");
-        }
+        function scrollToComments() {
+        document.getElementById("appContainer").scrollIntoView({ behavior: "smooth" });
+    }
     </script>
+    <script type="comments" src="/src/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
 
 </body>
 </html>
