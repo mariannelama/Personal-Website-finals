@@ -17,29 +17,34 @@
 import Comment from './components/Comment.vue';
 import CommentForm from './components/CommentForm.vue';
 
-export default {
-  components: { Comment, CommentForm },
-
-  data() {
-    return {
-      showComments: false,
-      comments: []
-    };
-  },
-
-  methods: {
-    toggleComments() {
-      this.showComments = !this.showComments;
+const app = Vue.createApp({
+    data() {
+        return {
+            showForm: false, // Controls the visibility of the form
+            name: "",
+            newComment: "",
+            comments: []
+        };
     },
-    addComment(comment) {
-      this.comments.push(comment);
+    methods: {
+        toggleContent() {
+            this.showForm = !this.showForm; // Toggles form visibility
+        },
+        addComment() {
+            if (this.name && this.newComment) {
+                const timestamp = new Date().toLocaleString();
+                this.comments.push({
+                    name: this.name,
+                    text: this.newComment,
+                    timestamp
+                });
+                this.name = "";
+                this.newComment = "";
+            } else {
+                alert("Please enter your name and comment!");
+            }
+        }
     }
-  },
+});
 
-  watch: {
-    showComments(newValue) {
-      console.log("showComments changed to:", newValue);
-    }
-  }
-};
-</script>
+app.mount("#appContainer");
