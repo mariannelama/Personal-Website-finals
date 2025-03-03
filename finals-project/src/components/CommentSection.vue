@@ -23,7 +23,7 @@
           v-model="comment" 
           required 
           class="w-full p-2 border rounded"
-          placeholder="Write your message..."
+          placeholder="Leave a message..."
         ></textarea>
       </div>
 
