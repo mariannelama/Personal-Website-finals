@@ -3,7 +3,7 @@ import App from './App.vue'
 
 import CommentSection from './components/CommentSection.vue'
 
-import '.src/assets/style.css';
+import './assets/style.css';
 
 const app = createApp(App)
 
