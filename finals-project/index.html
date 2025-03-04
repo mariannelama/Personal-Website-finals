@@ -124,21 +124,13 @@
             </div>
         </div>
 
-    <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
-        <button v-on:click="toggleContent"> Get to know me </button>
-        <div v-if="showForm" id="app">
-            <div>
-                <input type="text" id="name" placeholder="Enter your name" />
-            </div>
-            <div>
-                <textarea v-model="newComment" id="comment" placeholder="Leave a comment..."></textarea>
-            </div>
-            <button @click="addComment">Submit</button>
-            <div v-if="comments.length > 0" class="mt-6">
-                <div v-for="showForm" id="app"></div>
+        <div id="appContainer" class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
+            <button v-on:click="toggleContent">Get to know me</button>
+            <div v-if="showForm" id="app">
+                <button @click="addComment">Submit</button>
+                </div>
             </div>
         </div>
-    </div>
 
     <script>
         function scrollToComments() {
@@ -146,8 +138,7 @@
     }
     </script>
     <div id="app"></div>
-    <script type="comments" src="/src/main.js"></script>
-    <script src="/dist/build.js"></script>
+    <script type="module" src="/src/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
 </body>
